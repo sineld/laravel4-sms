@@ -1,0 +1,26 @@
+{
+    "name": "sineld/sms",
+    "description": "Türkiye Sms API for sending sms text messages.",
+    "keywords": ["laravel","sms","api"],
+    "authors": [
+        {
+            "name": "Sinan Eldem",
+            "role": "Developer",
+            "email": "sineld@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Sineld\\Sms\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
