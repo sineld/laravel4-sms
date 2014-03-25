@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
 
 	// Kullanıcı tanımlamaları
 
@@ -28,4 +28,4 @@ return [
 	/* Gönderilen mesajın tipini belirler. 1 değerini alırsa mesaj telefonun mesaj kutusuna düşer, 2 değerini alırsa mesaj telefonun ekranına bilgi mesajı olarak görüntülenir. 1: Normal SMS, 2: Flash SMS */
 	'mesajTipi' => 1
 
-];
+);
