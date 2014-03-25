@@ -30,17 +30,8 @@ class SmsServiceProvider extends ServiceProvider {
 	{
 		$this->app['sms'] = $this->app->share(function($app)
 		{
-			return new Sms;
+			return new Sms($app);
 		});
-
-		/*
-		// Auto alias
-		$this->app->booting(function()
-		{
-			$loader = AliasLoader::getInstance();
-			$loader->alias('Sms', 'Sineld\Sms\Facades\Sms');
-		});
-		*/
 	}
 
 	/**

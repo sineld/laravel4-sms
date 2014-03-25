@@ -1,56 +1,63 @@
 <?php namespace Sineld\Sms;
 
-use Config;
-use Lang;
 use SimpleXMLElement as XML;
 
 class Sms {
 
-	private $kod;
-	private $sonuc;
+	protected $app;
+	protected $config;
+	protected $lang;
+	protected $code;
+	protected $success;
 
-    public function __construct()
+    public function __construct($app)
     {
-		$locale = Config::get('app.locale');
-		$this->lang = Lang::get("sms::{$locale}.kodlar");
-    	$config = Config::get('sms::config');
-
-    	foreach($config as $key => $value)
-    	{
-			$this->$key = $value;
-    	}
+		$this->app = $app;
+		$locale = $this->app->getLocale();
+		$this->lang = $this->app['translator']->get("sms::{$locale}.codes");
+		$this->config = $this->app['config']->get("sms::config");
     }
 
-	public function kontor()
+	public function counter()
 	{
 		$url = 'http://gateway.turkiyesms.net/Gateways/Credit/';
-		$xml ="<KREDISORGU>
-			<KULLANICIADI>{$this->kullanici}</KULLANICIADI>
-			<SIFRE>{$this->sifre}</SIFRE>
-		</KREDISORGU>";
+		$xml = sprintf('<KREDISORGU>
+							<KULLANICIADI>%s</KULLANICIADI>
+							<SIFRE>%s</SIFRE>
+						</KREDISORGU>',
+						$this->config['kullanici'],
+						$this->config['sifre']
+				);
 
-		$result = $this->post($url, $xml);
-		$this->process($result);
-		return $this->sonuc == 1 ? $this->kod : $this->lang[$this->kod];
+		$this->post($url, $xml);
+		return $this->success == 1 ? $this->code : $this->lang[$this->code];
 	}
 
 	public function send($gsm, $mesaj, $gonderimTarihi = false, $bitisTarihi = false)
 	{
 		$url = 'http://gateway.turkiyesms.net/Gateways/Send/';
-		$xml ="<TOPLUSMS>
-			<KULLANICIADI>{$this->kullanici}</KULLANICIADI>
-			<SIFRE>{$this->sifre}</SIFRE>
-			<ORIGINATOR>{$this->originator}</ORIGINATOR>
-			<GONDERIMTARIHI>{$this->gonderimTarihi}</GONDERIMTARIHI>
-			<BITISTARIHI>{$this->bitisTarihi}</BITISTARIHI>
-			<NUMARALAR>{$gsm}</NUMARALAR>
-			<MESAJMETNI><![CDATA[{$mesaj}]]></MESAJMETNI>
-			<MESAJTIPI>{$this->mesajTipi}</MESAJTIPI>
-		</TOPLUSMS>";
+		$xml = sprintf('<TOPLUSMS>
+							<KULLANICIADI>%s</KULLANICIADI>
+							<SIFRE>%s</SIFRE>
+							<ORIGINATOR>%s</ORIGINATOR>
+							<GONDERIMTARIHI>%s</GONDERIMTARIHI>
+							<BITISTARIHI>%s</BITISTARIHI>
+							<NUMARALAR>%s</NUMARALAR>
+							<MESAJMETNI><![CDATA[%s]]></MESAJMETNI>
+							<MESAJTIPI>%s</MESAJTIPI>
+						</TOPLUSMS>',
+						$this->config['kullanici'],
+						$this->config['sifre'],
+						$this->config['originator'],
+						$gonderimTarihi,
+						$bitisTarihi,
+						$gsm,
+						$mesaj,
+						$this->config['mesajTipi']
+				);
 
-		$result = $this->post($url, $xml);
-		$this->process($result);
-		return $this->sonuc == 1 ? true : $this->lang[$this->kod];
+		$this->post($url, $xml);
+		return $this->success == 1 ? true : $this->lang[$this->code];
 	}
 
 	private function post($url, $xml)
@@ -64,22 +71,15 @@ class Sms {
 		$result = curl_exec($curl);
 		curl_close($curl);
 
-		return $result;
-	}
-
-	private function process($result)
-	{
 		$xml = new XML($result);
-
 		if($xml->Status == 'true')
 		{
-			$this->sonuc = 1;
-			$this->kod = "$xml->Code";
+			$this->success = 1;
+			$this->code = "$xml->Code";
 		}
 		else
 		{
-			$this->sonuc = 0;
-			$this->kod = "$xml->Code";
+			$this->code = "$xml->Code";
 		}
 	}
 }

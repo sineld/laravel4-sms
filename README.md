@@ -44,8 +44,15 @@ Kurulum tamamlandı!
 
 ```php
 // Kontör Sorgulama
-$kontor = SMS::kontor();
-echo sprintf('Sistemde kullanılabilir %s kontörünüz bulunmaktadır.', $kontor);
+$sonuc = SMS::counter();
+if(intval($sonuc))
+{
+	echo Lang::choice('{0} Hiç kontörünüz yok.|[1,Inf] :count kontörünüz bulunmaktadır.', $sonuc);
+}
+else
+{
+	echo 'Kontör sorgulanırken hata oluştu: '. $sonuc;
+}
 ```
 
 ```php
@@ -53,7 +60,7 @@ echo sprintf('Sistemde kullanılabilir %s kontörünüz bulunmaktadır.', $konto
 $sonuc = SMS::send('5321234567', 'SMS Metni');
 if($sonuc === true)
 {
-	echo 'Mesajınız başarıyla gönderildi!';
+	echo 'Mesajınız başarıyla gönderildi.';
 }
 else
 {
@@ -62,11 +69,24 @@ else
 ```
 
 ```php
-// Çoklu SMS gönderimi
+// Çoklu alıcıya farklı SMS gönderimi
 $sonuc = SMS::send('5321234567,5331234567', '1. Alıcı SMS Metni|2. Alıcı SMS Metni');
 if($sonuc === true)
 {
-	echo 'Mesajınız başarıyla gönderildi!';
+	echo 'Mesajınız başarıyla gönderildi.';
+}
+else
+{
+	echo 'SMS gönderilirken hata oluştu: '. $sonuc;
+}
+```
+
+```php
+// Çoklu alıcıya aynı SMS gönderimi
+$sonuc = SMS::send('5321234567,5331234567', 'SMS Metni');
+if($sonuc === true)
+{
+	echo 'Mesajınız başarıyla gönderildi.';
 }
 else
 {
