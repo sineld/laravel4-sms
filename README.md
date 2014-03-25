@@ -1,10 +1,10 @@
 ## Laravel 4 İçin Türkiye SMS API
 [![Latest Stable Version](https://poser.pugx.org/sineld/sms/v/stable.png)](https://packagist.org/packages/sineld/sms) [![Total Downloads](https://poser.pugx.org/sineld/sms/downloads.png)](https://packagist.org/packages/sineld/sms) [![Latest Unstable Version](https://poser.pugx.org/sineld/sms/v/unstable.png)](https://packagist.org/packages/sineld/sms) [![License](https://poser.pugx.org/sineld/sms/license.png)](https://packagist.org/packages/sineld/sms)
 
-Türkiye SMS firmasına ait sms gönderimi API kodlarına özel hazırlanmış Laravel Paketidir. Farklı sms firmalarına kolaylıkla uyarlayabilmeniz amacıyla dil dosyaları ve konfigürasyon sayfaları birbirinden ayrılmıştır.
+[Türkiye SMS][turkiye-sms-url] firmasına ait sms gönderimi API kodlarına özel hazırlanmış Laravel Paketidir. Farklı sms firmalarına kolaylıkla uyarlayabilmeniz amacıyla dil dosyaları ve konfigürasyon sayfaları birbirinden ayrılmıştır.
 
-## Projeye Destek Olmak
-Çalışmalarıma destek olmak isterseniz, [PayPal][paypal-donate-url] aracılığı ile bağışta bulunabilirsiniz.
+## Projeyi destekleyin
+Bu ve diğer projelerimize destek vermek isterseniz, [PayPal][paypal-donate-url] üzerinden bağışta bulunabilirsiniz.
 
 [![PayPal ile Destek Ol][paypal-donate-img]][paypal-donate-url]
 
@@ -74,8 +74,10 @@ else
 }
 ```
 
-## License
-This project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+## Lisans
+Açık kaynaklı olan bu proje [MIT lisansı][mit-url] ile lisanslanmıştır.
 
 [paypal-donate-img]: http://img.shields.io/badge/PayPal-donate-brightgreen.svg
 [paypal-donate-url]: http://bit.ly/donateSineld
+[turkiye-sms-url]: http://turkiyesms.com
+[mit-url]: http://opensource.org/licenses/MIT
