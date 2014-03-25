@@ -1,7 +1,6 @@
 ## Laravel 4 İçin Türkiye SMS API
 [![Latest Stable Version](https://poser.pugx.org/sineld/sms/v/stable.png)](https://packagist.org/packages/sineld/sms) [![Total Downloads](https://poser.pugx.org/sineld/sms/downloads.png)](https://packagist.org/packages/sineld/sms) [![Latest Unstable Version](https://poser.pugx.org/sineld/sms/v/unstable.png)](https://packagist.org/packages/sineld/sms) [![License](https://poser.pugx.org/sineld/sms/license.png)](https://packagist.org/packages/sineld/sms)
 
-Türkiye SMS
 [Türkiye SMS][turkiye-sms-url] firmasına ait sms gönderimi API kodlarına özel hazırlanmış Laravel Paketidir. Farklı sms firmalarına kolaylıkla uyarlayabilmeniz amacıyla dil dosyaları ve konfigürasyon sayfaları birbirinden ayrılmıştır.
 
 ## Projeyi destekleyin
