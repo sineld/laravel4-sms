@@ -1,9 +1,9 @@
 <?php
 
-return [
+return array(
 
 	// Error Codes
-	'kodlar' => [
+	'kodlar' => array(
 		'20' => 'Message Text or Numbers Are Missing.',
 		'30' => 'Username or Password Error.',
 		'40' => 'SMS not sent.',
@@ -13,6 +13,6 @@ return [
 		'80' => 'Ending Date can not be prior than system time.',
 		'90' => 'Unknown Originator.',
 		'-1' => 'System Failure'
-	]
+	)
 
-];
+);

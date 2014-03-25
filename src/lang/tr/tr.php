@@ -1,9 +1,9 @@
 <?php
 
-return [
+return array(
 
 	// Hata Kodları
-	'kodlar' => [
+	'kodlar' => array(
 		'20' => 'Mesaj metni veya Numaralar boş.',
 		'30' => 'Kullanıcı Adı veya Şifre Hatası.',
 		'40' => 'SMS iletilemedi.',
@@ -13,6 +13,6 @@ return [
 		'80' => 'Bitiş Tarihi sistem tarihten küçük.',
 		'90' => 'Tanımsız Originator.',
 		'-1' => 'Sistem Hatası'
-	]
+	)
 
-];
+);
