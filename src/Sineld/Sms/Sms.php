@@ -13,9 +13,9 @@ class Sms {
     public function __construct($app)
     {
 		$this->app = $app;
-		$locale = $this->app->getLocale();
+		$locale = $this->app['config']['app.locale'];
 		$this->lang = $this->app['translator']->get("sms::{$locale}.codes");
-		$this->config = $this->app['config']->get("sms::config");
+		$this->config = $this->app['config']['sms::config'];
     }
 
 	public function counter()
