@@ -12,7 +12,7 @@ Bu ve diğer projelerimize destek vermek isterseniz, [PayPal][paypal-donate-url]
 ## Kurulum
 Bu paketi uygulamanıza eklemek için sırası ile şu adımları izlemelisiniz:
 
-Şu satırı `composer.json` dosyanıza ekleyiniz:
+Şu satırı `composer.json` dosyanızdaki `require` içerisine ekleyiniz:
 
 ```json
 "sineld/sms": "dev-master"

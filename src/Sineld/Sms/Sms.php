@@ -33,15 +33,15 @@ class Sms {
 		return $this->success == 1 ? $this->code : $this->lang[$this->code];
 	}
 
-	public function send($gsm, $mesaj, $gonderimTarihi = false, $bitisTarihi = false)
+	public function send($gsm, $mesaj)
 	{
 		$url = 'http://gateway.turkiyesms.net/Gateways/Send/';
 		$xml = sprintf('<TOPLUSMS>
 							<KULLANICIADI>%s</KULLANICIADI>
 							<SIFRE>%s</SIFRE>
 							<ORIGINATOR>%s</ORIGINATOR>
-							<GONDERIMTARIHI>%s</GONDERIMTARIHI>
-							<BITISTARIHI>%s</BITISTARIHI>
+							<GONDERIMTARIHI></GONDERIMTARIHI>
+							<BITISTARIHI></BITISTARIHI>
 							<NUMARALAR>%s</NUMARALAR>
 							<MESAJMETNI><![CDATA[%s]]></MESAJMETNI>
 							<MESAJTIPI>%s</MESAJTIPI>
@@ -49,8 +49,6 @@ class Sms {
 						$this->config['kullanici'],
 						$this->config['sifre'],
 						$this->config['originator'],
-						$gonderimTarihi,
-						$bitisTarihi,
 						$gsm,
 						$mesaj,
 						$this->config['mesajTipi']
@@ -72,14 +70,7 @@ class Sms {
 		curl_close($curl);
 
 		$xml = new XML($result);
-		if($xml->Status == 'true')
-		{
-			$this->success = 1;
-			$this->code = "$xml->Code";
-		}
-		else
-		{
-			$this->code = "$xml->Code";
-		}
+		$this->success = $xml->Status == 'true' ? 1 : 0;
+		$this->code = "$xml->Code";
 	}
 }
